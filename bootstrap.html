@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Learning Project</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Custom (Fira Code) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #4388aa;
+            --primary-blue-dark: #0a2838;
+            --page-bg-gradient: linear-gradient(135deg, #383ab3 0%, #7b6ba1 50%, #43156e 100%);
+            --card-bg: #faf8f8;
+            --code-bg: #1e293b;
+            
+            --pink-gradient: linear-gradient(135deg, #6f4fff 0%, #ede7fc 100%);
+            --green-gradient: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            --purple-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+
+            --text-dark: #00248f;
+            --text-muted: #2d3949;
+            --text-light: #f8fafc;
+
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-main: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.8);
+            
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'Fira Code', Consolas, Monaco, monospace;
+        }
+
+        body {
+            background: var(--page-bg-gradient);
+            font-family: var(--font-family);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .page-container {
+            max-width: 900px;
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-main);
+        }
+
+        .main-header {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            border-top: 5px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .main-header h1 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .main-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-md);
+            border: 1px solid #f1f5f9;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            color: var(--text-dark);
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+        }
+
+        p {
+            color: #334155;
+        }
+
+        .box {
+            background: var(--pink-gradient);
+            border-radius: var(--radius-md);
+            border: 1px solid #fbcfe8;
+        }
+
+        .pink-card {
+            background: var(--pink-gradient) !important;
+        }
+
+        .congrats-card {
+            background: var(--purple-gradient);
+            color: var(--text-light);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .congrats-card h2 {
+            color: var(--text-light);
+            border-bottom: none;
+        }
+
+        .code-block, pre {
+            background-color: var(--code-bg);
+            color: #f1f5f9;
+            border-radius: var(--radius-md);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::after {
+            content: "HTML";
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: #e11d48;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            background-color: #f1f5f9;
+            color: #0284c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .table-custom {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .table-custom th {
+            background-color: var(--primary-blue) !important;
+            color: var(--text-light) !important;
+        }
+
+        .custom-form {
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: var(--radius-md);
+        }
+
+        .btn-custom {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.15s ease-in-out;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--primary-blue-dark);
+            color: white;
+        }
+
+        .btn-custom:active {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -2px rgba(0, 0, 0, 0.15);
+        }
+
+        a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .main-header:hover,
+        .section-card:hover,
+        .congrats-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.20);
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center py-5">
+
+    <div class="container page-container p-4 p-md-5 d-flex flex-column gap-4">
+        
+        <header class="main-header text-center p-4 my-2">
+            <h1>🌐 HTML Learning Project</h1>
+            <p class="mb-0">Master the Building Blocks of the Web</p>
+        </header>
+
+        <!-- Section 1 -->
+        <section class="section-card p-4">
+            <h2 class="mb-3">🚀 What is HTML?</h2>
+            <p><b>HTML (HyperText Markup Language)</b> is the standard markup language for creating web pages. Think of it as the skeleton or foundation of every website you visit.</p>
+
+            <div class="box p-3 my-3">
+                <p class="mb-2"><b>Key Points:</b></p>
+                <ul class="mb-0 ps-4">
+                    <li><b>HyperText:</b> Text with links to other texts</li>
+                    <li><b>Markup:</b> A way to annotate text to show structure and meaning</li>
+                    <li><b>Language:</b> A set of rules and syntax for creating web content</li>
+                </ul>
+            </div>
+
+            <h3 class="mt-4 mb-2">🏗️ How HTML Works</h3>
+            <p>HTML uses <b>tags</b> to define elements. Tags are keywords surrounded by angle brackets like <code>&lt;tagname&gt;</code>. Most tags come in pairs:</p>
+
+            <div class="code-block my-3">
+                <pre class="p-3 mb-0"><code>&lt;tagname&gt;Content goes here&lt;/tagname&gt;
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph&lt;/p&gt;</code></pre>
+            </div>
+        </section>
+
+        <section class="section-card p-4">
+            <h2 class="mb-3">📋 Basic HTML Structure</h2>
+            <p>Every HTML document follows this basic structure:</p>
+
+            <div class="code-block my-3">
+                <pre class="p-3 mb-0"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;This is my first paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <div class="box p-3 my-3">
+                <h4 class="h6 mb-2"><b>Structure Breakdown:</b></h4>
+                <ul class="mb-0 ps-4">
+                    <li><b>!DOCTYPE html:</b> Tells the browser this is HTML5</li>
+                    <li><b>html:</b> Root element of the page</li>
+                    <li><b>head:</b> Contains metadata (not visible on page)</li>
+                    <li><b>body:</b> Contains visible content</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-card p-4">
+            <h2 class="mb-3">🏷️ Essential HTML Tags</h2>
+            
+            <div class="table-responsive my-3">
+                <table class="table table-bordered align-middle table-custom mb-0">
+                    <thead>
+                        <tr>
+                            <th>Tag</th>
+                            <th>Purpose</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;h1&gt; - &lt;h6&gt;</code></td>
+                            <td>Headings (largest to smallest)</td>
+                            <td><code>&lt;h1&gt;Main Title&lt;/h1&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;p&gt;</code></td>
+                            <td>Paragraphs</td>
+                            <td><code>&lt;p&gt;This is text&lt;/p&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;a&gt;</code></td>
+                            <td>Links</td>
+                            <td><code>&lt;a href="url"&gt;Link text&lt;/a&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;img&gt;</code></td>
+                            <td>Images</td>
+                            <td><code>&lt;img src="image.jpg" alt="Description"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;div&gt;</code></td>
+                            <td>Container/section</td>
+                            <td><code>&lt;div&gt;Content here&lt;/div&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code></td>
+                            <td>Lists</td>
+                            <td><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="mt-4 mb-3">🎯 Live Examples:</h3>
+            <div class="p-3 rounded border" style="background-color: #f8fafc; border-color: #e2e8f0;">
+                <h1 class="text-center my-3">This is an H1 heading</h1>
+                <h2 class="border-0 text-start">This is an H2 heading</h2>
+                <h3 class="text-start">This is an H3 heading</h3>
+                <p>This is a paragraph with <b>bold text</b> and <i>italic text.</i></p>
+                <p>Here's a <a href="https://www.google.com" target="_blank">sample link.</a></p>
+
+                <p class="mb-1"><b>Unordered List:</b></p>
+                <ul class="ps-4 mb-3">
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ul>
+
+                <p class="mb-1"><b>Ordered List:</b></p>
+                <ol class="ps-4 mb-0">
+                    <li>Step one</li>
+                    <li>Step two</li>
+                    <li>Step three</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section-card p-4">
+            <h2 class="mb-3">📝 HTML Forms</h2>
+            <p>Forms allow users to input data. Here's a working example:</p>
+
+            <form class="custom-form p-4 d-flex flex-column gap-3">
+                <div>
+                    <label for="name" class="form-label mb-1">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                </div>
+
+                <div>
+                    <label for="email" class="form-label mb-1">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <label for="subject" class="form-label mb-1">Subject:</label>
+                    <select class="form-select" id="subject" name="subject">
+                        <option value="">-- Choose Option --</option>
+                        <option value="question">Question</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="support">Support</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="message" class="form-label mb-1">Message:</label>
+                    <textarea class="form-control" id="message" name="message" rows="3" placeholder="Type your message..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-custom px-4 py-2 align-self-start">Submit Form</button>
+            </form>
+        </section>
+
+        <section class="section-card p-4">
+            <h2 class="mb-3">🎨 HTML Attributes</h2>
+            <p>Attributes provide additional information about HTML elements:</p>
+
+            <div class="code-block my-3">
+                <pre class="p-3 mb-0"><code>&lt;!-- Common attributes --&gt;
+&lt;img src="photo.jpg" alt="A beautiful sunset" width="300" height="200"&gt;
+&lt;a href="https://example.com" target="_blank" title="Visit Example"&gt;Click here&lt;/a&gt;
+&lt;div class="container" id="main-content" style="color: blue;"&gt;Content&lt;/div&gt;</code></pre>
+            </div>
+
+            <div class="box p-3 my-3">
+                <h3 class="h6 mb-2"><b>Important Attributes:</b></h3>
+                <ul class="mb-0 ps-4">
+                    <li><b>id:</b> Unique identifier for an element</li>
+                    <li><b>class:</b> Groups elements for styling</li>
+                    <li><b>src:</b> Source file for images, videos, etc.</li>
+                    <li><b>href:</b> URL for links</li>
+                    <li><b>alt:</b> Alternative text for images</li>
+                    <li><b>style:</b> Inline CSS styling</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-card p-4">
+            <h2 class="mb-3">📊 Tables in HTML</h2>
+            <p>Tables organize data in rows and columns:</p>
+
+            <div class="code-block my-3">
+                <pre class="p-3 mb-0"><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Age&lt;/th&gt;
+            &lt;th&gt;City&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;John&lt;/td&gt;
+            &lt;td&gt;25&lt;/td&gt;
+            &lt;td&gt;New York&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+            </div>
+
+            <h4 class="h6 mt-4 mb-2">Sample Table:</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle table-custom mb-0">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Subject</th>
+                            <th>Grade</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alice Johnson</td>
+                            <td>Mathematics</td>
+                            <td>A+</td>
+                            <td>✅ Passed</td>
+                        </tr>
+                        <tr>
+                            <td>Bob Smith</td>
+                            <td>Physics</td>
+                            <td>B</td>
+                            <td>✅ Passed</td>
+                        </tr>
+                        <tr>
+                            <td>Carol Davis</td>
+                            <td>Chemistry</td>
+                            <td>A</td>
+                            <td>✅ Passed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section-card pink-card p-4">
+            <h2 class="mb-3">💻 Practice Exercises</h2>
+            
+            <h4 class="h6 fw-bold mt-3 mb-2">Beginner Tasks:</h4>
+            <ol class="ps-4 mb-3">
+                <li>Create a basic HTML page with a title, heading, and paragraph</li>
+                <li>Add an image with alt text</li>
+                <li>Create a list of your favorite movies</li>
+                <li>Build a simple table with your weekly schedule</li>
+            </ol>
+
+            <h4 class="h6 fw-bold mt-3 mb-2">Intermediate Tasks:</h4>
+            <ol class="ps-4 mb-0">
+                <li>Create a contact form with different input types</li>
+                <li>Build a navigation menu with links</li>
+                <li>Design a simple blog post layout</li>
+                <li>Create a photo gallery grid</li>
+            </ol>
+        </section>
+
+        <section class="section-card p-4">
+            <h2 class="mb-3">🗂️ Project Structure</h2>
+            <p>Here's how to organize your HTML project:</p>
+
+            <div class="code-block my-3">
+                <pre class="p-3 mb-0"><code>my-website/
+├── index.html        (Main page)
+├── about.html        (About page)
+├── contact.html      (Contact page)
+│
+├── css/
+│   └── styles.css    (CSS stylesheets)
+│
+├── js/
+│   └── script.js     (JavaScript files)
+│
+└── images/
+    ├── logo.png
+    ├── hero-image.jpg
+    └── gallery/
+        ├── photo1.jpg
+        └── photo2.jpg</code></pre>
+            </div>
+        </section>
+
+        <section class="section-card pink-card p-4">
+            <h2 class="mb-3">🎯 Next Steps in Your Learning Journey</h2>
+            <p>After mastering HTML, continue with:</p>
+            <ul class="ps-4 mb-0">
+                <li><b>CSS (Cascading Style Sheets):</b> Style your HTML elements</li>
+                <li><b>JavaScript:</b> Add interactivity and dynamic behavior</li>
+                <li><b>Responsive Design:</b> Make websites work on all devices</li>
+                <li><b>Web Accessibility:</b> Make websites usable for everyone</li>
+                <li><b>Modern Frameworks:</b> React, Vue.js, or Angular</li>
+            </ul>
+        </section>
+
+        <section class="section-card pink-card p-4">
+            <h2 class="mb-3">🔧 Development Tools</h2>
+            <h4 class="h6 fw-bold mt-3 mb-2">Recommended Tools:</h4>
+            <ul class="ps-4 mb-0">
+                <li><b>Text Editors:</b> VS Code, Sublime Text, Atom</li>
+                <li><b>Browsers:</b> Chrome DevTools, Firefox Developer Tools</li>
+                <li><b>Version Control:</b> Git and GitHub</li>
+                <li><b>Online Editors:</b> CodePen, JSFiddle, Repl.it</li>
+            </ul>
+        </section>
+
+        <footer class="congrats-card p-4 text-center">
+            <h2>🎉 Congratulations!</h2>
+            <p class="mb-0 text-light">You've completed the HTML Learning Project! You now understand the fundamentals of HTML and can create your own web pages. Keep practicing and building projects to strengthen your skills.</p>
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
